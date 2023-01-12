@@ -1,0 +1,15 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  margin: 40px;
+}
+
+.main-container {
+  display: flex;
+  justify-content: center;
+}
