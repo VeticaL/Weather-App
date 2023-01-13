@@ -13,3 +13,11 @@ header {
   display: flex;
   justify-content: center;
 }
+
+.weather-info {
+  margin: 20px;
+}
+
+.weather-details {
+  margin: 20px;
+}
