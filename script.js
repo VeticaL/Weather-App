@@ -6,7 +6,7 @@ const city = document.querySelector(".location");
 const temperature = document.querySelector(".temperature");
 const feelsLike = document.querySelector(".feels-like");
 const humidity = document.querySelector(".humidity");
-const chanceofRain = document.querySelector(".chance-of-rain");
+const Pressure = document.querySelector(".pressure");
 const windSpeed = document.querySelector(".wind-speed");
 const toggle = document.querySelector(".toggle");
 const search = document.querySelector(".submit");
@@ -29,7 +29,7 @@ async function weather(location) {
   let temp = data.main.temp;
   let feels_like = data.main.feels_like;
   let humidity_data = data.main.humidity;
-  let chanceofRain_data = data.rain;
+  let pressure_data = data.main.pressure;
   let windSpeed_data = data.wind.speed;
   updateData(
     name,
@@ -37,38 +37,40 @@ async function weather(location) {
     temp,
     feels_like,
     humidity_data,
-    chanceofRain_data,
+    pressure_data,
     windSpeed_data
   );
   console.log(data);
 }
 
-function updateData(name, weather, temp, fells, humid, rain, wind) {
+function updateData(name, weather, temp, fells, humid, press, wind) {
   city.textContent = name;
   condition.textContent = weather.toUpperCase();
   if (unit === "imperial") {
     temperature.textContent = temp + " °F";
     feelsLike.textContent = "Feels Like: " + fells + " °F";
     humidity.textContent = "Humidity: " + humid + " %";
-    chanceofRain.textContent = "Chance of Rain: " + rain;
+    Pressure.textContent = "Pressure: " + press;
     windSpeed.textContent = "Wind Speed: " + wind + " mph";
   } else if (unit === "metric") {
     temperature.textContent = temp + " °C";
     feelsLike.textContent = "Feels Like: " + fells + " °C";
     humidity.textContent = "Humidity: " + humid + " %";
-    chanceofRain.textContent = "Chance of Rain: " + rain;
+    Pressure.textContent = "Pressure: " + press;
     windSpeed.textContent = "Wind Speed: " + wind + " kmph";
   }
 }
 
-weather(loc);
+// Event listeners
 
 toggle.addEventListener("click", () => {
   if (unit === "imperial") {
     unit = "metric";
+    toggle.textContent = "Display °F";
     weather(loc);
   } else if (unit === "metric") {
     unit = "imperial";
+    toggle.textContent = "Display °C";
     weather(loc);
   }
 });
@@ -86,9 +88,7 @@ input.addEventListener("keyup", (e) => {
   }
 });
 
-
-// TO-Do
-// styling
-// chance of Rain
-// unit positoining
-// local storage
+//onload
+window.onload = () => {
+  weather(loc);
+};
